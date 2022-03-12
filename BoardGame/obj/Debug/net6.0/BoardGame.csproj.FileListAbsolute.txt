@@ -1,0 +1,15 @@
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\bin\Debug\net6.0\BoardGame.exe
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\bin\Debug\net6.0\BoardGame.deps.json
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\bin\Debug\net6.0\BoardGame.runtimeconfig.json
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\bin\Debug\net6.0\BoardGame.dll
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\bin\Debug\net6.0\BoardGame.pdb
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.csproj.AssemblyReference.cache
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.AssemblyInfoInputs.cache
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.AssemblyInfo.cs
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.dll
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\refint\BoardGame.dll
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.pdb
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\BoardGame.genruntimeconfig.cache
+C:\Users\Дмитрий\source\C#\Games1\BoardGame\obj\Debug\net6.0\ref\BoardGame.dll
