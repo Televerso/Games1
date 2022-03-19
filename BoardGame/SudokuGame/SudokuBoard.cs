@@ -7,19 +7,15 @@ namespace BoardGame.SudokuGame;
  * Доска для игры в судоку.
  * </summary>
  * <remarks>
- * _size - размер стороны доски<br/>
- * _boardData - данные доски
+ * _size<br/>
+ * _boardData
  * </remarks>
  */
 public class SudokuBoard : IBoard
 {
-    /// <summary>
-    /// Разммер доски.
-    /// </summary>
+    // Размер доски
     private int _size;
-    /// <summary>
-    /// Данные доски.
-    /// </summary>
+    // Данные доски
     private int[,]? _boardData;
     
     /**
@@ -154,7 +150,12 @@ public class SudokuBoard : IBoard
         if (a < 1) throw new ArgumentOutOfRangeException();
         CreateBoard(a);
     }
-
+    /// <summary>
+    /// Создает новую доску указанного размера
+    /// </summary>
+    /// <param name="x">размер доски</param>
+    /// <param name="y"> -- </param>
+    /// <exception cref="ArgumentOutOfRangeException">если переданные аргументы меньше 1</exception>
     public void RecreateBoard(int x, int y)
     {
         if (x < 1) throw new ArgumentOutOfRangeException();
@@ -171,16 +172,26 @@ public class SudokuBoard : IBoard
     {
         return _size;
     }
-
+    /// <summary>
+    /// Возвращает количество клеток доски
+    /// </summary>
+    /// <returns>количество клеток доски</returns>
     public int GetCount()
     {
         return _size * _size;
     }
-
+    /// <summary>
+    /// Возвращает сторону X
+    /// </summary>
+    /// <returns>длина стороны X</returns>
     public int GetXSide()
     {
         return _size;
     }
+    /// <summary>
+    /// Возвращает сторону Y
+    /// </summary>
+    /// <returns>длина стороны Y</returns>
     public int GetYSide()
     {
         return _size;
