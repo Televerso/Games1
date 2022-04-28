@@ -384,6 +384,7 @@ namespace BoardGame.ChineseCrosswordGame
             StringBuilder builder = new StringBuilder();
             int maxNumberCols = 0;
             int maxNumberLines = 0;
+            // Определяем максимальные смещения
             for (int i = 0; i != _sideY; ++i)
             {
                 maxNumberCols = Math.Max(_colsData[i].Length,maxNumberCols);
@@ -392,13 +393,16 @@ namespace BoardGame.ChineseCrosswordGame
             {
                 maxNumberLines = Math.Max(_linesData[i].Length,maxNumberLines);
             }
-
+            
+            // Строим заголовок
             for (int i = 0; i != maxNumberCols; ++i)
             {
+                // Смещение 
                 for (int n = 0; n < maxNumberLines; ++n)
                 {
                     builder.Append("  ");
                 }
+                // Поссказки по вертикалям
                 for (int j = 0; j < _sideY; ++j)
                 {
                     if (_colsData[j].Length > i)
@@ -416,8 +420,10 @@ namespace BoardGame.ChineseCrosswordGame
                 builder.AppendLine();
             }
             
+            // Основная часть
             for (int i = 0; i != _sideX; ++i)
             {
+                //Подсказки по горизонталям
                 for (int j = 0; j < maxNumberLines; ++j)
                 {
                     if (_linesData[i].Length > j)
@@ -437,8 +443,7 @@ namespace BoardGame.ChineseCrosswordGame
                         builder.Append("  ");
                     }
                 }
-                
-
+                // Сами данные
                 for (int n = 0; n != _sideY; ++n)
                 {
                     builder.Append('|');

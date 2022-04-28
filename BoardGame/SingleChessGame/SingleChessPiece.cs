@@ -76,7 +76,7 @@
         public SingleChessPiece()
         {
             _pieceType = Piece.None;
-            _color = ' ';
+            _color = 'B';
             _movesLeft = 0;
         }
         /// <summary>

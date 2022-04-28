@@ -36,6 +36,7 @@ public class SingleChessBoard
     /// <param name="board">копируемая доска</param>
     public SingleChessBoard(SingleChessBoard board)
     {
+        if (board == null) throw new ArgumentNullException();
         _boardData = (SingleChessSquare[,]) board._boardData.Clone();
         if (board._selectedSquare == null)
         {
@@ -56,6 +57,8 @@ public class SingleChessBoard
     /// <param name="piece">символьное обозначение фигуры</param>
     public void AddPiece(int coord1, int coord2, char piece)
     {
+        if (coord1 < 0 || coord2 < 0) throw new ArgumentOutOfRangeException();
+        if (coord1 > 7 || coord2 > 7) throw new ArgumentOutOfRangeException();
         _boardData[coord1, coord2].SetPiece(piece);
     }
 
@@ -67,6 +70,8 @@ public class SingleChessBoard
     /// <returns>index</returns>
     public int GetCellIndex(int x, int y)
     {
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
         return x + y * 8;
     }
     /// <summary>
@@ -76,6 +81,7 @@ public class SingleChessBoard
     /// <returns>координата x</returns>
     public int GetCellXByIndex(int index)
     {
+        if (index < 0 || index > 63) throw new ArgumentOutOfRangeException();
         return index % 8;
     }
     /// <summary>
@@ -85,6 +91,7 @@ public class SingleChessBoard
     /// <returns>координата y</returns>
     public int GetCellYByIndex(int index)
     {
+        if (index < 0 || index > 63) throw new ArgumentOutOfRangeException();
         return index / 8;
     }
     /// <summary>
@@ -141,7 +148,6 @@ public class SingleChessBoard
     /// <returns></returns>
     public int[,]? GetBoard()
     {
-        
         int[,] array = new int[8, 8];
         for (int i = 0; i != 8; ++i)
         {
@@ -238,6 +244,8 @@ public class SingleChessBoard
     /// <returns>SingleChessSquare</returns>
     public SingleChessSquare GetSquare(int x, int y)
     {
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
         return _boardData[x, y];
     }
     /// <summary>
@@ -247,6 +255,7 @@ public class SingleChessBoard
     /// <returns>SingleChessSquare</returns>
     public SingleChessSquare GetSquare(int index)
     {
+        if (index < 0 || index > 63) throw new ArgumentOutOfRangeException();
         return _boardData[index % 8, index / 8];
     }
     /// <summary>
@@ -389,6 +398,9 @@ public class SingleChessBoard
     /// <param name="y">индекс y</param>
     public void SelectSquare(int x, int y)
     {
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
+        
         // Если уже выбрано какое-то поле, то стрирает эту отметку
         if (_selectedSquare != null)
         {
@@ -448,6 +460,9 @@ public class SingleChessBoard
     /// <param name="y">индекс y</param>
     private void UnselectSquare(int x, int y)
     {
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
+        
         // Если на данном поле нет фигуры
         if (!_boardData[x, y].IsOccupied())
         {
@@ -492,6 +507,8 @@ public class SingleChessBoard
     /// <param name="y">индекс y поля, на которое нужно пойти</param>
     public void MovePiece(int x, int y)
     {   
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
         
         // Если никакое поле не выбрано
         if (_selectedSquare == null) return;
@@ -532,7 +549,7 @@ public class SingleChessBoard
             {
                 if (_boardData[i, j].IsOccupied())
                 {
-                    currData[k++] = new CoordinatePiece(i, j, new SingleChessPiece(_boardData[i, j].GetPiece()!));
+                    currData[k++] = new CoordinatePiece(i, j, _boardData[i, j].GetPiece()!);
                 }
             }
         }

@@ -18,7 +18,9 @@ public class CoordinatePiece
     /// <param name="piece">ссылка на фигуру</param>
     public CoordinatePiece(int x, int y, SingleChessPiece piece)
     {
-        _piece = piece;
+        if (x < 0 || y < 0) throw new ArgumentOutOfRangeException();
+        if (x > 7 || y > 7) throw new ArgumentOutOfRangeException();
+        _piece = new SingleChessPiece(piece);
         _x = x;
         _y = y;
     }

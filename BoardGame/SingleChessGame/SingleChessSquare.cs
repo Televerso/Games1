@@ -101,6 +101,8 @@ namespace BoardGame.SingleChessGame
         /// <param name="square">копируемая клетка</param>
         public SingleChessSquare(SingleChessSquare square)
         {
+            if (square == null) throw new ArgumentNullException();
+            
             _coordinate1 = square._coordinate1;
             _coordinate2 = square._coordinate2;
 
