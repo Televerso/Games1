@@ -6,7 +6,7 @@ public class SingleChessBoard
 {
     private SingleChessSquare[,] _boardData;
     private int[]? _selectedSquare;
-    private Stack<coordinatePiece[]> _history;
+    private Stack<CoordinatePiece[]> _history;
 
     public SingleChessBoard()
     {
@@ -19,7 +19,7 @@ public class SingleChessBoard
             }
         }
         _selectedSquare = null;
-        _history = new Stack<coordinatePiece[]>();
+        _history = new Stack<CoordinatePiece[]>();
     }
 
     public SingleChessBoard(SingleChessBoard board)
@@ -557,13 +557,13 @@ public class SingleChessBoard
 
     private void StoreBoard()
     {
-        int N = 0;
+        int n = 0;
         foreach (var i in _boardData)
         {
-            if (i.IsOccupied()) ++N;
+            if (i.IsOccupied()) ++n;
         }
 
-        coordinatePiece[] currData = new coordinatePiece[N];
+        CoordinatePiece[] currData = new CoordinatePiece[n];
         int k = 0;
         for (int i = 0; i != 8; ++i)
         {
@@ -571,7 +571,7 @@ public class SingleChessBoard
             {
                 if (_boardData[i, j].IsOccupied())
                 {
-                    currData[k++] = new coordinatePiece(i, j, _boardData[i, j].GetPiece()!);
+                    currData[k++] = new CoordinatePiece(i, j, _boardData[i, j].GetPiece()!);
                 }
             }
         }
@@ -580,7 +580,7 @@ public class SingleChessBoard
 
     private void ReceiveBoard()
     {
-        if (!_history.TryPop(out coordinatePiece[]? currData)) return;
+        if (!_history.TryPop(out CoordinatePiece[]? currData)) return;
         
         RecreateBoard();
 

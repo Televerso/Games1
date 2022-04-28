@@ -2,17 +2,17 @@
 
 namespace BoardGame.SingleChessGame;
 
-public class coordinatePiece
+public class CoordinatePiece
 {
-    private readonly int X;
-    private readonly int Y;
+    private readonly int _x;
+    private readonly int _y;
     private readonly SingleChessPiece _piece;
 
-    public coordinatePiece(int x, int y, SingleChessPiece piece)
+    public CoordinatePiece(int x, int y, SingleChessPiece piece)
     {
         _piece = piece;
-        X = x;
-        Y = y;
+        _x = x;
+        _y = y;
     }
 
     public SingleChessPiece GetPiece()
@@ -22,21 +22,21 @@ public class coordinatePiece
 
     public int GetX()
     {
-        return X;
+        return _x;
     }
 
     public int GetY()
     {
-        return Y;
+        return _y;
     }
 
     public override string ToString()
     {
         StringBuilder builder = new StringBuilder();
         builder.Append('(');
-        builder.Append(X);
+        builder.Append(_x);
         builder.Append(',');
-        builder.Append(Y);
+        builder.Append(_y);
         builder.Append(") ");
         builder.Append(_piece);
         return builder.ToString();
