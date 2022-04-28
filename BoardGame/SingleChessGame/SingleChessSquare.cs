@@ -212,7 +212,7 @@ namespace BoardGame.SingleChessGame
         {
             if (_hasAPiece) return _thePiece!.ToString();
             if (_isSelected) return "O";
-            if (_isMarked) return "X";
+            if (_isMarked) return "x";
             return " ";
         }
         /// <summary>
@@ -221,6 +221,13 @@ namespace BoardGame.SingleChessGame
         public void MarkSquare()
         {
             _isMarked = true;
+        }
+        /// <summary>
+        /// Отмечает клетку
+        /// </summary>
+        public void MarkSquare(bool a)
+        {
+            _isMarked = a;
         }
         /// <summary>
         /// Убирает отметку
@@ -250,6 +257,13 @@ namespace BoardGame.SingleChessGame
         public void SelectSquare()
         {
             _isSelected = true;
+        }
+        /// <summary>
+        /// Выбирает клетку
+        /// </summary>
+        public void SelectSquare(bool a)
+        {
+            _isSelected = a;
         }
         /// <summary>
         /// Отменяет выбор клетки
