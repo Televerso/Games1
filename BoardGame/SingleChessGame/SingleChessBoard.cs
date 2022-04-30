@@ -433,7 +433,7 @@ namespace BoardGame.SingleChessGame
                 UnselectSquare(_selectedSquare[0], _selectedSquare[1]);
             }
 
-            _selectedSquare = new int[2] {x, y};
+            _selectedSquare = new int[] {x, y};
 
             // Если на заданном поле нет фигуры
             if (!_boardData[x, y].IsOccupied())
