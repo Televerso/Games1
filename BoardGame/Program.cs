@@ -15,42 +15,24 @@ namespace BoardGame
     {
         private static void Main(string[] args)
         {
-            SingleChessBoard cb = new SingleChessBoard();
-
-            Console.WriteLine(cb);
-            
-            cb.AddPiece(0,2,'Q');
-            cb.AddPiece(2,1,'N');
-            cb.AddPiece(4,3,'B');
-            cb.AddPiece(7,2,'R');
-            cb.AddPiece(7,6,'Q');
-            cb.AddPiece(6,7,'B');
-            Console.WriteLine(cb);
-            while (!cb.CheckBoard())
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    MinesweeperBoard mb = new MinesweeperBoard(10,10);
+            //    mb.RandomFillBoard(100);
+            //    mb.OpenBoard();
+            //    Console.WriteLine(mb);
+            //}
+            int s = 0;
+            for (int i = 0; i < 100; i++)
             {
-                string a = Console.ReadLine() ?? throw new InvalidOperationException();
-                if (a.Equals("back")) cb.HistoryBackward();
-                else if (a.Equals("select"))
-                {
-                    string b = Console.ReadLine() ?? throw new InvalidOperationException();
-                    int x = 0;
-                    int y = 0;
-                    x = Convert.ToInt32(b.Split(' ')[0]);
-                    y = Convert.ToInt32(b.Split(' ')[1]);
-                    cb.SelectSquare(x, y);
-                }
-                else if (a.Equals("move"))
-                {
-                    string b = Console.ReadLine() ?? throw new InvalidOperationException();
-                    int x = 0;
-                    int y = 0;
-                    x = Convert.ToInt32(b.Split(' ')[0]);
-                    y = Convert.ToInt32(b.Split(' ')[1]);
-                    cb.MovePiece(x, y);
-                }
-                Console.WriteLine(cb);
+                SudokuBoardGenerator sudokuBoardGenerator = new SudokuBoardGenerator(16);
+                sudokuBoardGenerator.GenerateStable();
+                SudokuBoard sudokuBoard = new SudokuBoard(sudokuBoardGenerator.ToFullSudokuBoard());
+                Console.WriteLine(sudokuBoard);
+                Console.WriteLine(sudokuBoard.CheckBoard());
+                if (sudokuBoard.CheckBoard()) ++s;
             }
-            Console.WriteLine(cb.CheckBoard());
+            Console.WriteLine(s);
         }
     }
 }

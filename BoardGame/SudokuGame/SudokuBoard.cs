@@ -391,39 +391,7 @@ namespace BoardGame.SudokuGame
 
             return true;
         }
-
-        /**
-     * <summary>
-     * Проверяет завершенность сектора
-     * </summary>
-     * <param name="x">координата X сектора</param>
-     * <param name="y">координата Y сектора</param>
-     */
-        private bool CheckSector(int x, int y)
-        {
-            int sideX = (int) Math.Sqrt(_size);
-            while (_size % sideX != 0) --sideX;
-            int sideY = _size / sideX;
-
-            byte[] currArray = new byte[_size];
-            for (int i = 0; i != sideX; ++i)
-            {
-                for (int j = 0; j != sideY; ++j)
-                {
-                    int value = _boardData![j + sideY * y, i + sideX * x];
-                    if (value == 0) return false;
-                    ++currArray[value - 1];
-                }
-            }
-
-            foreach (int i in currArray)
-            {
-                if (i != 1) return false;
-            }
-
-            return true;
-        }
-
+        
         /**
      * <summary>
      * Проверяет завершенность сектора
@@ -433,18 +401,16 @@ namespace BoardGame.SudokuGame
         private bool CheckSector(int index)
         {
             int sideX = (int) Math.Sqrt(_size);
-            while (_size % sideX != 0) --sideX;
-            int sideY = _size / sideX;
 
             int x = index % sideX;
-            int y = index / sideY;
+            int y = index / sideX;
 
             byte[] currArray = new byte[_size];
             for (int i = 0; i != sideX; ++i)
             {
-                for (int j = 0; j != sideY; ++j)
+                for (int j = 0; j != sideX; ++j)
                 {
-                    int value = _boardData![j + sideY * y, i + sideX * x];
+                    int value = _boardData![j + sideX * y, i + sideX * x];
                     if (value == 0) return false;
                     ++currArray[value - 1];
                 }
@@ -467,11 +433,15 @@ namespace BoardGame.SudokuGame
         public bool CheckBoard()
         {
             if (_boardData == null) throw new NullReferenceException();
+            bool flag = (Math.Ceiling(Math.Sqrt(_size)) - Math.Sqrt(_size) < 0.0000001);
             for (int i = 0; i < _size; ++i)
             {
                 if (!CheckLine(i)) return false;
                 if (!CheckColumn(i)) return false;
-                if (!CheckSector(i)) return false;
+                if (flag)
+                {
+                    if (!CheckSector(i)) return false;
+                }
             }
 
             return true;

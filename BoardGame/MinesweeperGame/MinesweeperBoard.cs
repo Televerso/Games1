@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using Microsoft.VisualBasic;
 
 namespace BoardGame.MinesweeperGame
 {
@@ -73,7 +74,22 @@ namespace BoardGame.MinesweeperGame
             _sideY = mb._sideY;
             _boardData = (MinesweeperCell[,]) mb._boardData.Clone();
         }
+        
+        public MinesweeperBoard(bool[,] board)
+        {
+            int x = board.GetLength(0);
+            int y = board.GetLength(1);
+            CreateBoard(x,y);
 
+            for (int i = 0; i != x; ++i)
+            {
+                for (int j = 0; j != y; ++j)
+                {
+                    _boardData![i,j].SetMine(board[i,j]);
+                }
+            }
+        }
+        
         /// <summary>
         /// Возвращает индекс поля по его координатам
         /// </summary>
@@ -217,8 +233,7 @@ namespace BoardGame.MinesweeperGame
         /// </summary>
         public void RandomFillBoard()
         {
-            int diff = 85;
-            RandomFillBoard(diff);
+            RandomFillBoard((int) Math.Sqrt(_sideX*_sideY));
         }
 
         /// <summary>
@@ -229,14 +244,16 @@ namespace BoardGame.MinesweeperGame
         /// <exception cref="ArgumentException">если передан неверный аргумент</exception>
         public void RandomFillBoard(int difficulty)
         {
-            Random rand = new Random();
-            if (_boardData == null) throw new NullReferenceException();
-            if (difficulty < 0 || difficulty > 99) throw new ArgumentException();
-            for (int i = 0; i != _sideX * _sideY; ++i)
+            RandomBoardFiller rand = new RandomBoardFiller(_sideX, _sideY);
+            rand.Generate(difficulty);
+            bool[,] board = rand.GetBoard();
+            for (int i = 0; i != _sideX; ++i)
             {
-                _boardData[i % _sideX, i / _sideX].SetMine(!Convert.ToBoolean(rand.Next(0, 100 - difficulty)));
+                for (int j = 0; j != _sideY; ++j)
+                {
+                    _boardData![i,j].SetMine(board[i,j]);
+                }
             }
-
             CountAdjacentMines();
         }
 
@@ -540,5 +557,7 @@ namespace BoardGame.MinesweeperGame
 
             return builder.ToString();
         }
+
+        
     }
 }
